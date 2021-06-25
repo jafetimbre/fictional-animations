@@ -1,0 +1,177 @@
+#anim-1 {
+    --strokeColor: #B8B8B8;
+    --heartColor: #A8041C;
+    --size: 120px;
+    --totalAnim: 5s;
+    --delay: 1s;
+    --squareLen: 240;
+    --circleLen: 188.522;
+    --heartLen: 308.522;
+    --svgSize: 90px;
+    --circleW: 60px;
+}
+#anim-1 .anim-svg {
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    margin-top: calc(var(--size)/-2);
+    width: var(--size);
+    height: var(--size);
+    overflow: visible;
+}
+#anim-1 .heart-svg-anim__group {
+    transform-origin: 0 var(--svgSize);
+    animation: group-anim var(--totalAnim) var(--delay) infinite;
+}  
+#anim-1 .heart-svg-anim__square {
+    stroke: var(--strokeColor);
+    stroke-dasharray: var(--squareLen), var(--squareLen);
+    stroke-dashoffset: var(--squareLen);
+    animation: square-anim var(--totalAnim) var(--delay) infinite;
+}
+#anim-1 .heart-svg-anim__circle {
+    stroke: var(--strokeColor);
+    stroke-dasharray: var(--circleLen), var(--circleLen);
+    stroke-dashoffset: var(--circleLen);
+    transform-origin: var(--circleW) var(--circleW)/2;
+}
+#anim-1 .heart-svg-anim__circle.left {
+    animation: left-circle-anim var(--totalAnim) var(--delay) infinite;
+}
+#anim-1 .heart-svg-anim__circle.right {
+    animation: right-circle-anim var(--totalAnim) var(--delay) infinite;
+}
+#anim-1 .heart-svg-anim__heartPath {
+    stroke: var(--heartColor);
+    fill: transparent;
+    stroke-dasharray: var(--heartLen), var(--heartLen);
+    stroke-dashoffset: var(--heartLen);
+    animation: heart-anim var(--totalAnim) var(--delay) infinite;
+}
+
+@keyframes square-anim {
+    12% {
+        stroke-dashoffset: 0;
+    }
+    43% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    85% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+@keyframes left-circle-anim {
+    12% {
+        stroke-dashoffset: var(--circleLen);
+    }
+    31% {
+        stroke-dashoffset: 0;
+        transform: translateY(0);
+    }
+    41% {
+        stroke-dashoffset: 0;
+        transform: translateY(calc(var(--circleW)/-2));
+    }
+    43% {
+        stroke-dashoffset: 0;
+        transform: translateY(calc(var(--circleW)/-2));
+        opacity: 1;
+    }
+    85% {
+        stroke-dashoffset: 0;
+        transform: translateY(calc(var(--circleW)/-2));
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        transform: translateY(calc(var(--circleW)/-2));
+        opacity: 0;
+    }
+}
+@keyframes right-circle-anim {
+    12% {
+        stroke-dashoffset: var(--circleLen);
+    }
+    31% {
+        stroke-dashoffset: 0;
+        transform: translateX(0);
+    }
+    41% {
+        stroke-dashoffset: 0;
+        transform: translateX(calc(var(--circleW)/2));
+    }
+    43% {
+        stroke-dashoffset: 0;
+        transform: translateX(calc(var(--circleW)/2));
+        opacity: 1;
+    }
+    85% {
+        stroke-dashoffset: 0;
+        transform: translateX(calc(var(--circleW)/2));
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        transform: translateX(calc(var(--circleW)/2));
+        opacity: 0;
+    }
+}
+@keyframes group-anim {
+    43% {
+        transform: rotate(0);
+    }
+    54% {
+        transform: rotate(-45deg);
+    }
+    90% {
+        transform: rotate(-45deg);
+        opacity: 1;
+    }
+    97% {
+        transform: rotate(-45deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(-45deg);
+        opacity: 0;
+    }
+}
+@keyframes heart-anim {
+    50% {
+        stroke-dashoffset: var(--heartLen);
+        fill: transparent;
+    }
+    70% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    75% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+        transform-origin: center;
+        transform: scale(1);
+    }
+    78% {
+        stroke-dashoffset: 0;
+        /*fill: var(--heartColor);*/
+        transform-origin: center;
+        transform: scale(1.2);
+    }
+    90% {
+        stroke-dashoffset: 0;
+        /*fill: var(--heartColor);*/
+        transform-origin: center;
+        transform: scale(1);
+    }
+    100% {
+        stroke-dashoffset: 0;
+        /*fill: var(--heartColor);*/
+    }
+}
